@@ -1,3 +1,4 @@
+import { MouseEvent, useEffect } from "react";
 import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
 
@@ -10,13 +11,9 @@ const gradient = keyframes({
   },
 });
 
-// #FFABAB,
-
 const useStyles = makeStyles()({
   container: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     height: "100dvh",
     width: "100%",
     background:
@@ -25,17 +22,58 @@ const useStyles = makeStyles()({
     animation: `${gradient} 20s linear infinite`,
   },
   title: {
-    fontSize: "40px",
+    fontSize: "60px",
     fontWeight: 700,
+    transform: "translateY(-25%)",
   },
 });
 
 export const Header = () => {
   const { classes } = useStyles();
 
+  const moveAll = (e: MouseEvent) => {
+    move(e, "-40");
+    move(e, "0");
+    move(e, "40");
+  };
+
+  let pushX = 0;
+  let pushY = 0;
+
+  const move = (event: MouseEvent, id: string) => {
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+    const anchorX = window.innerWidth / 2 + parseInt(id);
+    const anchorY = window.innerHeight / 2;
+    const letter = document.getElementById(id);
+    if (letter) {
+      letter.style.position = "absolute";
+      const rect = letter.getBoundingClientRect();
+      const distanceX = mouseX - rect.x;
+      const distanceY = mouseY - rect.y;
+      const distance = Math.sqrt(
+        Math.pow(distanceX, 2) + Math.pow(distanceY, 2)
+      );
+      const powerX = rect.x - ((distanceX / distance) * 500) / distance;
+      const powerY = rect.y - ((distanceY / distance) * 500) / distance;
+      pushX = (pushX + (anchorX - rect.x) / 2) / 2.1;
+      pushY = (pushY + (anchorY - rect.y) / 2) / 2.1;
+      letter.style.left = powerX + pushX + "px";
+      letter.style.top = powerY + pushY + "px";
+    }
+  };
+
   return (
-    <div className={classes.container}>
-      <span className={classes.title}>Hi, I'm Ben</span>
+    <div className={classes.container} onMouseMove={moveAll}>
+      <span id="-40" className={classes.title}>
+        B
+      </span>
+      <span id="0" className={classes.title}>
+        E
+      </span>
+      <span id="40" className={classes.title}>
+        N
+      </span>
     </div>
   );
 };
