@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect } from "react";
+import { MouseEvent } from "react";
 import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
 
