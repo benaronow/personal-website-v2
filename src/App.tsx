@@ -1,8 +1,11 @@
-import { MouseEvent, useEffect } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
 import { chars, moveLetter, resetLetter } from "./utils/letterUtils";
 import { moveTab, resetTab } from "./utils/tabUtils";
+import Github from "./assets/github.png";
+import LinkedIn from "./assets/linkedin.png";
+import { moveLogo } from "./utils/logoUtils";
 
 const gradient = keyframes({
   "0%": {
@@ -10,6 +13,72 @@ const gradient = keyframes({
   },
   "100%": {
     backgroundPosition: "100% 20%",
+  },
+});
+
+const githubIn = keyframes({
+  "0%": {
+    height: "80px",
+    width: "80px",
+    transform: "rotate(-360deg)",
+  },
+  "100%": {
+    bottom: 20,
+    right: 20,
+    height: "160px",
+    width: "160px",
+    borderRadius: "80px",
+    transform: "rotate(0deg)",
+  },
+});
+
+const githubOut = keyframes({
+  "0%": {
+    height: "160px",
+    width: "160px",
+    borderRadius: "80px",
+    transform: "rotate(360deg)",
+  },
+  "100%": {
+    bottom: 10,
+    right: 10,
+    height: "80px",
+    width: "80px",
+    borderRadius: "40px",
+    transform: "rotate(0deg)",
+  },
+});
+
+const linkedinIn = keyframes({
+  "0%": {
+    height: "80px",
+    width: "80px",
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    bottom: 20,
+    right: 20,
+    height: "160px",
+    width: "160px",
+    borderRadius: "80px",
+    transform: "rotate(-360deg)",
+  },
+});
+
+const linkedinOut = keyframes({
+  "0%": {
+    height: "160px",
+    width: "160px",
+    borderRadius: "80px",
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    bottom: 10,
+    right: 10,
+    height: "80px",
+    width: "80px",
+    borderRadius: "40px",
+    transform: "rotate(360deg)",
   },
 });
 
@@ -28,7 +97,7 @@ const useStyles = makeStyles()({
     fontFamily: "Barlow Semi Condensed",
     fontSize: "85px",
     fontWeight: 900,
-    textShadow: "5px 5px 2px black",
+    textShadow: "0px 10px 7px black",
     transform: "translate(-50%, -50%)",
     color: "white",
   },
@@ -37,17 +106,64 @@ const useStyles = makeStyles()({
     top: 0,
     left: 0,
     background: "white",
+    boxShadow: "5px 10px 30px black",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   topRightTab: {
     position: "absolute",
     top: 0,
     right: 0,
     background: "white",
+    boxShadow: "-5px 10px 30px black",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  github: {
+    position: "absolute",
+    bottom: 10,
+    left: 10,
+    height: "80px",
+    width: "80px",
+    boxShadow: "0px 10px 30px black",
+    borderRadius: "40px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  githubIn: {
+    animation: `${githubIn} 0.5s forwards`,
+  },
+  githubOut: {
+    animation: `${githubOut} 0.5s forwards`,
+  },
+  linkedin: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    height: "80px",
+    width: "80px",
+    boxShadow: "0px 10px 30px black",
+    borderRadius: "40px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
+  linkedinIn: {
+    animation: `${linkedinIn} 0.5s forwards`,
+  },
+  linkedinOut: {
+    animation: `${linkedinOut} 0.5s forwards`,
   },
 });
 
 export const App = () => {
   const { classes } = useStyles();
+
+  const [githubIn, setGithubIn] = useState(false);
+  const [linkedinIn, setLinkedinIn] = useState(false);
 
   useEffect(() => {
     for (const i of Array.from(Array(9).keys())) resetLetter(i);
@@ -59,6 +175,8 @@ export const App = () => {
     for (const i of Array.from(Array(9).keys())) moveLetter(e, i);
     moveTab(e, "left");
     moveTab(e, "right");
+    setGithubIn(moveLogo(e, "github"));
+    setLinkedinIn(moveLogo(e, "linkedin"));
   };
 
   return (
@@ -70,6 +188,20 @@ export const App = () => {
           <span className={classes.title}>{char.char}</span>
         </div>
       ))}
+      <img
+        id="github"
+        className={`${classes.github} ${
+          githubIn ? classes.githubIn : classes.githubOut
+        }`}
+        src={Github}
+      />
+      <img
+        id="linkedin"
+        className={`${classes.linkedin} ${
+          linkedinIn ? classes.linkedinIn : classes.linkedinOut
+        }`}
+        src={LinkedIn}
+      />
     </div>
   );
 };
