@@ -1,6 +1,8 @@
 import { MouseEvent, useEffect } from "react";
 import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
+import { chars, moveLetter, resetLetter } from "./utils/letterUtils";
+import { moveTab, resetTab } from "./utils/tabUtils";
 
 const gradient = keyframes({
   "0%": {
@@ -30,94 +32,39 @@ const useStyles = makeStyles()({
     transform: "translate(-50%, -50%)",
     color: "white",
   },
+  topLeftTab: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    background: "white",
+  },
+  topRightTab: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    background: "white",
+  },
 });
 
 export const App = () => {
   const { classes } = useStyles();
 
-  const chars = [
-    { char: "H", x: -195, y: 0 },
-    { char: "i", x: -150, y: 0 },
-    { char: ",", x: -125, y: 0 },
-    { char: "I", x: -70, y: 0 },
-    { char: "'", x: -50, y: -5 },
-    { char: "m", x: -5, y: 0 },
-    { char: "B", x: 95, y: 0 },
-    { char: "e", x: 145, y: 0 },
-    { char: "n", x: 195, y: 0 },
-  ];
-  const charMap = Array.from(Array(9).keys()).map((i) => {
-    return {
-      char: chars[i].char,
-      x: chars[i].x,
-      y: chars[i].y,
-      changedX: 0,
-      changedY: 0,
-    };
-  });
-
-  const resetLetter = (i: number) => {
-    charMap.splice(i, 1, { ...charMap[i], changedX: 0, changedY: 0 });
-    const anchorX = window.innerWidth / 2 + charMap[i].x;
-    const anchorY = window.innerHeight / 2 + charMap[i].y;
-    const letter = document.getElementById(charMap[i].char);
-    if (letter) {
-      const width = letter.style.width;
-      const height = letter.style.height;
-      console.log(width, height);
-      letter.style.position = "absolute";
-      letter.style.left = anchorX + "px";
-      letter.style.top = anchorY + "px";
-    }
-  };
-
   useEffect(() => {
-    for (const id of Array.from(Array(9).keys())) resetLetter(id);
+    for (const i of Array.from(Array(9).keys())) resetLetter(i);
+    resetTab("left");
+    resetTab("right");
   }, []);
 
-  const move = (event: MouseEvent, i: number) => {
-    const mouseX = event.clientX;
-    const mouseY = event.clientY;
-    const anchorX = window.innerWidth / 2 + charMap[i].x;
-    const anchorY = window.innerHeight / 2 + charMap[i].y;
-    const letter = document.getElementById(charMap[i].char);
-    if (letter) {
-      const rect = letter.getBoundingClientRect();
-      const distanceX = mouseX - rect.x;
-      const distanceY = mouseY - rect.y;
-      const distance = Math.sqrt(
-        Math.pow(distanceX, 2) + Math.pow(distanceY, 2)
-      );
-      const power = 500;
-      if (distance > power / 2) {
-        resetLetter(i);
-      } else {
-        const newLetter = {
-          ...charMap[i],
-          changedX: (charMap[i].changedX + (anchorX - rect.x) / 2) / 2,
-          changedY: (charMap[i].changedY + (anchorY - rect.y) / 2) / 2,
-        };
-        charMap.splice(i, 1, newLetter);
-        const newX =
-          rect.x -
-          ((distanceX / distance) * power) / distance +
-          charMap[i].changedX;
-        const newY =
-          rect.y -
-          ((distanceY / distance) * power) / distance +
-          charMap[i].changedY;
-        letter.style.left = newX + "px";
-        letter.style.top = newY + "px";
-      }
-    }
-  };
-
   const moveAll = (e: MouseEvent) => {
-    for (const id of Array.from(Array(9).keys())) move(e, id);
+    for (const i of Array.from(Array(9).keys())) moveLetter(e, i);
+    moveTab(e, "left");
+    moveTab(e, "right");
   };
 
   return (
     <div className={classes.container} onMouseMove={moveAll}>
+      <div id="left" className={classes.topLeftTab}></div>
+      <div id="right" className={classes.topRightTab}></div>
       {chars.map((char) => (
         <div id={char.char}>
           <span className={classes.title}>{char.char}</span>
