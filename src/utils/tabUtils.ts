@@ -2,11 +2,16 @@ import { MouseEvent } from "react";
 
 export const resetTab = (id: string) => {
   const tab = document.getElementById(id);
-  if (tab) {
+  const tabName = document.getElementById(`${id}Name`);
+  if (tab && tabName) {
     tab.style.width = 150 + "px";
     tab.style.height = 150 + "px";
     tab.style.borderRadius = 75 + "px";
     tab.style.transform = `translate(${id === "left" ? "-" : ""}75px, -75px)`;
+    tabName.style.height = 53 + "px";
+    tabName.style.fontSize = 17 + "px";
+    tabName.style.fontSize = 17 + "px";
+    tabName.style.opacity = 0 + "%";
   }
 };
 
@@ -14,7 +19,8 @@ export const moveTab = (event: MouseEvent, id: string) => {
   const mouseX = event.clientX;
   const mouseY = event.clientY;
   const tab = document.getElementById(id);
-  if (tab) {
+  const tabName = document.getElementById(`${id}Name`);
+  if (tab && tabName) {
     const distanceX = Math.abs(
       mouseX - (id === "left" ? 0 : window.innerWidth)
     );
@@ -31,12 +37,26 @@ export const moveTab = (event: MouseEvent, id: string) => {
       const newHeight = Math.min(400, Math.max(150, 150 + 100 * powY));
       tab.style.width = newWidth + "px";
       tab.style.height = newHeight + "px";
-      tab.style.borderRadius = parseInt(tab.style.height) / 2 + "px";
+      const leg = (Math.min(newWidth, newHeight) / 2 / 2) * Math.sqrt(2);
+      tabName.style.width = leg + "px";
+      tabName.style.height = leg + "px";
+      tabName.style.fontSize = leg / 3 + "px";
+      tabName.style.fontSize = leg / 3 + "px";
+      tabName.style.opacity = ((leg - 53) / 88) * 100 + "%";
+      tab.style.borderRadius =
+        Math.max(parseInt(tab.style.width), parseInt(tab.style.height)) / 2 +
+        "px";
       tab.style.transform = `translate(${id === "left" ? "-" : ""}${
         parseInt(tab.style.width) / 2
       }px, -${parseInt(tab.style.height) / 2}px)`;
+      return distance < 200;
     } else {
       resetTab(id);
+      tabName.style.fontSize = 17 + "px";
+      tabName.style.fontSize = 17 + "px";
+      tabName.style.opacity = 0 + "%";
+      return false;
     }
   }
+  return false;
 };
