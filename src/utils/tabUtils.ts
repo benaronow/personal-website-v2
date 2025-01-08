@@ -1,13 +1,15 @@
 import { MouseEvent } from "react";
 
 export const resetTab = (id: string) => {
-  const tab = document.getElementById(id);
+  const tab = document.getElementById(`${id}Tab`);
   const tabName = document.getElementById(`${id}Name`);
   if (tab && tabName) {
     tab.style.width = 150 + "px";
     tab.style.height = 150 + "px";
     tab.style.borderRadius = 75 + "px";
-    tab.style.transform = `translate(${id === "left" ? "-" : ""}75px, -75px)`;
+    tab.style.transform = `translate(${
+      id === "left" ? "-" : ""
+    }75px, -75px)`;
     tabName.style.height = 53 + "px";
     tabName.style.fontSize = 17 + "px";
     tabName.style.fontSize = 17 + "px";
@@ -18,7 +20,7 @@ export const resetTab = (id: string) => {
 export const moveTab = (event: MouseEvent, id: string) => {
   const mouseX = event.clientX;
   const mouseY = event.clientY;
-  const tab = document.getElementById(id);
+  const tab = document.getElementById(`${id}Tab`);
   const tabName = document.getElementById(`${id}Name`);
   if (tab && tabName) {
     const distanceX = Math.abs(

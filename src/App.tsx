@@ -1,12 +1,43 @@
 import { MouseEvent, useEffect, useState } from "react";
-import { chars, moveLetter, resetLetter } from "./utils/letterUtils";
+import { moveLetter, resetLetter } from "./utils/letterUtils";
 import { moveTab, resetTab } from "./utils/tabUtils";
-import Github from "./assets/github.png";
-import LinkedIn from "./assets/linkedin.png";
 import { moveLogo } from "./utils/logoUtils";
-import { useStyles } from "./useStyles";
-import { Forward } from "@mui/icons-material";
 import { isInOverlay } from "./utils/overlayUtils";
+import { LeftPage } from "./components/leftPage";
+import { RightPage } from "./components/rightPage";
+import { Github } from "./components/github";
+import { Linkedin } from "./components/linkedin";
+import { LeftName } from "./components/leftName";
+import { RightName } from "./components/rightName";
+import { LeftTab } from "./components/leftTab";
+import { RightTab } from "./components/rightTab";
+import { LeftArrow } from "./components/leftArrow";
+import { RightArrow } from "./components/rightArrow";
+import { Overlay } from "./components/overlay";
+import { Letters } from "./components/letters";
+import { keyframes } from "tss-react";
+import { makeStyles } from "tss-react/mui";
+
+const gradient = keyframes({
+  "0%": {
+    backgroundPosition: "0% 80%",
+  },
+  "100%": {
+    backgroundPosition: "100% 20%",
+  },
+});
+
+const useStyles = makeStyles()({
+  container: {
+    display: "flex",
+    height: "100dvh",
+    width: "100%",
+    background:
+      "linear-gradient(80deg, #e73c7e, #e73c7e, #FF6F91, #FF8C00, #FFB74D, #cad523, #3ed523, #23d5ab, #23d5ab, #3ed523, #cad523, #FFB74D, #FF8C00, #FF6F91, #e73c7e, #e73c7e)",
+    backgroundSize: "2200% 2200%",
+    animation: `${gradient} 20s linear infinite`,
+  },
+});
 
 export const App = () => {
   const { classes } = useStyles();
@@ -71,91 +102,30 @@ export const App = () => {
 
   return (
     <div className={classes.container} onMouseMove={handleMouseMove}>
-      <div
-        id="left"
-        className={`${classes.leftTab} ${leftIn && classes.leftIn}`}
-        onClick={handleLeftClick}
-      ></div>
-      <div id="leftName" className={classes.leftName} onClick={handleLeftClick}>
-        <span>About</span>
-        <span>Me</span>
-      </div>
-      <div
-        className={`${classes.leftPage} ${
-          leftOpen
-            ? classes.leftPageIn
-            : leftOpen === false && classes.leftPageOut
-        }`}
-      ></div>
-      <Forward
-        className={`${classes.leftArrow} ${
-          leftOpen
-            ? classes.leftArrowIn
-            : leftOpen === false && classes.leftArrowOut
-        } ${inLeftOverlay && classes.inLeftOverlay}`}
-      ></Forward>
-      <div
-        id="right"
-        className={`${classes.rightTab} ${rightIn && classes.rightIn}`}
-        onClick={handleRightClick}
-      ></div>
-      <div
-        id="rightName"
-        className={classes.rightName}
-        onClick={handleRightClick}
-      >
-        <span>My</span>
-        <span>Work</span>
-      </div>
-      <div
-        className={`${classes.rightPage} ${
-          rightOpen
-            ? classes.rightPageIn
-            : rightOpen === false && classes.rightPageOut
-        }`}
-      ></div>
-      <Forward
-        className={`${classes.rightArrow} ${
-          rightOpen
-            ? classes.rightArrowIn
-            : rightOpen === false && classes.rightArrowOut
-        } ${inRightOverlay && classes.inRightOverlay}`}
-      ></Forward>
-      {chars.map((char) => (
-        <div id={char.char}>
-          <span className={classes.title}>{char.char}</span>
-        </div>
-      ))}
-      <a href="https://github.com/benaronow" target="_blank">
-        <img
-          id="github"
-          className={`${classes.github} ${
-            githubIn
-              ? classes.githubIn
-              : githubIn === false && classes.githubOut
-          }`}
-          src={Github}
-        />
-      </a>
-      <a href="https://www.linkedin.com/in/benaronow/" target="_blank">
-        <img
-          id="linkedin"
-          className={`${classes.linkedin} ${
-            linkedinIn
-              ? classes.linkedinIn
-              : linkedinIn === false && classes.linkedinOut
-          }`}
-          src={LinkedIn}
-        />
-      </a>
-      <div
-        className={`${classes.overlay} ${
-          leftOpen || rightOpen
-            ? `${classes.overlayIn} ${classes.overlayHover}`
-            : classes.overlayOut
-        }`}
-        onClick={handleOverlayClick}
-      ></div>
+      <LeftTab leftIn={leftIn} handleLeftClick={handleLeftClick} />
+      <LeftName handleLeftClick={handleLeftClick} />
+      <LeftPage leftOpen={leftOpen} />
+      <LeftArrow
+        leftOpen={leftOpen}
+        inLeftOverlay={inLeftOverlay}
+        handleOverlayClick={handleOverlayClick}
+      />
+      <RightTab rightIn={rightIn} handleRightClick={handleRightClick} />
+      <RightName handleRightClick={handleRightClick} />
+      <RightPage rightOpen={rightOpen} />
+      <RightArrow
+        rightOpen={rightOpen}
+        inRightOverlay={inRightOverlay}
+        handleOverlayClick={handleOverlayClick}
+      />
+      <Letters />
+      <Github githubIn={githubIn} />
+      <Linkedin linkedinIn={linkedinIn} />
+      <Overlay
+        leftOpen={leftOpen}
+        rightOpen={rightOpen}
+        handleOverlayClick={handleOverlayClick}
+      />
     </div>
   );
 };
