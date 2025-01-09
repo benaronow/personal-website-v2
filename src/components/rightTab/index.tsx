@@ -1,17 +1,17 @@
-import { keyframes } from "tss-react";
+// import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
 
-const rightIn = keyframes({
-  "0%": {
-    background: "white",
-  },
-  "50%": {
-    background: "#CF9FFF",
-  },
-  "100%": {
-    background: "white",
-  },
-});
+// const rightIn = keyframes({
+//   "0%": {
+//     background: "white",
+//   },
+//   "50%": {
+//     background: "#CF9FFF",
+//   },
+//   "100%": {
+//     background: "white",
+//   },
+// });
 
 const useStyles = makeStyles()({
   rightTab: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles()({
     },
   },
   rightIn: {
-    animation: `${rightIn} 2s infinite ease-out`,
+    // animation: `${rightIn} 2s infinite ease-out`,
   },
 });
 

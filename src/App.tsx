@@ -51,7 +51,7 @@ export const App = () => {
   const [inRightOverlay, setInRightOverlay] = useState(false);
 
   useEffect(() => {
-    for (const i of Array.from(Array(9).keys())) resetLetter(i);
+    for (const i of Array.from(Array(10).keys())) resetLetter(i);
     resetTab("left");
     resetTab("right");
   }, []);
@@ -85,7 +85,7 @@ export const App = () => {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!leftOpen && !rightOpen) {
-      for (const i of Array.from(Array(9).keys())) moveLetter(e, i);
+      for (const i of Array.from(Array(10).keys())) moveLetter(e, i);
       setLeftIn(moveTab(e, "left"));
       setRightIn(moveTab(e, "right"));
       const inGithub = moveLogo(e, "github");
@@ -103,7 +103,7 @@ export const App = () => {
   return (
     <div className={classes.container} onMouseMove={handleMouseMove}>
       <LeftTab leftIn={leftIn} handleLeftClick={handleLeftClick} />
-      <LeftName handleLeftClick={handleLeftClick} />
+      <LeftName leftIn={leftIn} handleLeftClick={handleLeftClick} />
       <LeftPage leftOpen={leftOpen} />
       <LeftArrow
         leftOpen={leftOpen}
@@ -111,7 +111,7 @@ export const App = () => {
         handleOverlayClick={handleOverlayClick}
       />
       <RightTab rightIn={rightIn} handleRightClick={handleRightClick} />
-      <RightName handleRightClick={handleRightClick} />
+      <RightName rightIn={rightIn} handleRightClick={handleRightClick} />
       <RightPage rightOpen={rightOpen} />
       <RightArrow
         rightOpen={rightOpen}

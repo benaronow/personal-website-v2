@@ -1,18 +1,19 @@
 import { MouseEvent } from "react";
 
 export const chars = [
-  { char: "H", x: -195, y: 0 },
-  { char: "i", x: -150, y: 0 },
-  { char: ",", x: -125, y: 0 },
-  { char: "I", x: -70, y: 0 },
-  { char: "'", x: -50, y: -5 },
-  { char: "m", x: -5, y: 0 },
-  { char: "B", x: 95, y: 0 },
-  { char: "e", x: 145, y: 0 },
-  { char: "n", x: 195, y: 0 },
+  { char: "H", x: -220, y: 0 },
+  { char: "i", x: -175, y: 0 },
+  { char: ",", x: -150, y: 0 },
+  { char: "I", x: -95, y: 0 },
+  { char: "'", x: -70, y: -5 },
+  { char: "m", x: -20, y: 0 },
+  { char: "B", x: 80, y: 0 },
+  { char: "e", x: 135, y: 0 },
+  { char: "n", x: 190, y: 0 },
+  { char: "!", x: 230, y: 0 },
 ];
 
-const charMap = Array.from(Array(9).keys()).map((i) => {
+const charMap = Array.from(Array(10).keys()).map((i) => {
   return {
     char: chars[i].char,
     x: chars[i].x,

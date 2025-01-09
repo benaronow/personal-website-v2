@@ -1,17 +1,17 @@
-import { keyframes } from "tss-react";
+// import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
 
-const leftIn = keyframes({
-  "0%": {
-    background: "white",
-  },
-  "50%": {
-    background: "#CF9FFF",
-  },
-  "100%": {
-    background: "white",
-  },
-});
+// const leftIn = keyframes({
+//   "0%": {
+//     background: "white",
+//   },
+//   "50%": {
+//     background: "#CF9FFF",
+//   },
+//   "100%": {
+//     background: "white",
+//   },
+// });
 
 const useStyles = makeStyles()({
   leftTab: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles()({
     },
   },
   leftIn: {
-    animation: `${leftIn} 2s infinite ease-out`,
+    // animation: `${leftIn} 2s infinite ease-out`,
   },
 });
 

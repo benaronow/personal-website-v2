@@ -1,4 +1,17 @@
+import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
+
+const rightNameIn = keyframes({
+  "0%": {
+    color: "black",
+  },
+  "50%": {
+    color: "#CF9FFF",
+  },
+  "100%": {
+    color: "black",
+  },
+});
 
 const useStyles = makeStyles()({
   rightName: {
@@ -18,19 +31,23 @@ const useStyles = makeStyles()({
       cursor: "pointer",
     },
   },
+  rightNameIn: {
+    animation: `${rightNameIn} 2s infinite ease-out`,
+  },
 });
 
 interface RightNameProps {
+  rightIn: boolean;
   handleRightClick: () => void;
 }
 
-export const RightName = ({ handleRightClick }: RightNameProps) => {
+export const RightName = ({ rightIn, handleRightClick }: RightNameProps) => {
   const { classes } = useStyles();
 
   return (
     <div
       id="rightName"
-      className={classes.rightName}
+      className={`${classes.rightName} ${rightIn && classes.rightNameIn}`}
       onClick={handleRightClick}
     >
       <span>My</span>

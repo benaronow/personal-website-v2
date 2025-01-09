@@ -5,7 +5,7 @@ const useStyles = makeStyles()({
   title: {
     position: "absolute",
     fontFamily: "Barlow Semi Condensed",
-    fontSize: "85px",
+    fontSize: "100px",
     fontWeight: 900,
     textShadow: "0px 10px 7px black",
     transform: "translate(-50%, -50%)",
