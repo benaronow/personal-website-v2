@@ -160,7 +160,12 @@ export const RightPage = ({ rightOpen }: RightPageProps) => {
             primarily to be used as a PWA but also works in desktop form.`}
             </span>
           </div>
-          <a className={classes.link}>
+          <a
+            href="https://github.com/benaronow/liftledger"
+            target="_blank"
+            rel="noreferrer"
+            className={classes.link}
+          >
             <span>View Github Repo</span>
           </a>
         </Box>
@@ -176,7 +181,12 @@ export const RightPage = ({ rightOpen }: RightPageProps) => {
               head-to-head games.
             </span>
           </div>
-          <a className={classes.link}>
+          <a
+            href="https://github.com/benaronow/swe-final-project"
+            target="_blank"
+            rel="noreferrer"
+            className={classes.link}
+          >
             <span>View Github Repo</span>
           </a>
         </Box>
@@ -191,7 +201,12 @@ export const RightPage = ({ rightOpen }: RightPageProps) => {
             activity impacted their businesses. The verdict? Maybe.`}
             </span>
           </div>
-          <a className={classes.link}>
+          <a
+            href="https://github.com/benaronow/Stock-Market-and-Twitter-Correlation-Analysis"
+            target="_blank"
+            rel="noreferrer"
+            className={classes.link}
+          >
             <span>View Github Repo</span>
           </a>
         </Box>
