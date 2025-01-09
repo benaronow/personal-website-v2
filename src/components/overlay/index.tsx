@@ -7,14 +7,14 @@ const overlayIn = keyframes({
     zIndex: 1,
   },
   "100%": {
-    opacity: "75%",
+    opacity: "0%",
     zIndex: 4,
   },
 });
 
 const overlayOut = keyframes({
   "0%": {
-    opacity: "75%",
+    opacity: "0%",
     zIndex: 4,
   },
   "100%": {

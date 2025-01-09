@@ -31,11 +31,13 @@ const useStyles = makeStyles()({
   container: {
     display: "flex",
     height: "100dvh",
-    width: "100%",
+    width: "100dvw",
     background:
       "linear-gradient(80deg, #e73c7e, #e73c7e, #FF6F91, #FF8C00, #FFB74D, #cad523, #3ed523, #23d5ab, #23d5ab, #3ed523, #cad523, #FFB74D, #FF8C00, #FF6F91, #e73c7e, #e73c7e)",
     backgroundSize: "2200% 2200%",
     animation: `${gradient} 20s linear infinite`,
+    overflow: "hidden",
+    position: "relative",
   },
 });
 
