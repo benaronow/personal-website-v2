@@ -81,7 +81,31 @@ const useStyles = makeStyles()({
     border: "solid",
     borderWidth: "5px",
     background: "white",
-    marginBottom: "15px",
+    marginBottom: "25px",
+  },
+  infoText: {
+    fontSize: "18px",
+    margin: "0px 10px 0px 10px",
+  },
+  notLink: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    overflow: "scroll",
+  },
+  link: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#0080FF",
+    fontSize: "20px",
+    fontWeight: 900,
+    width: "calc(100% + 30px)",
+    height: "7dvh",
+    background: "#CF9FFF",
+    borderRadius: "0px 0px 20px 20px",
+    justifySelf: "flex-end",
+    transform: "translateY(15px)",
   },
 });
 
@@ -92,6 +116,7 @@ interface RightPageProps {
 const infoBoxStyle = {
   display: "flex",
   flexDirection: "column",
+  justifyContent: "space-between",
   alignItems: "center",
   textAlign: "left",
   height: "70dvh",
@@ -125,19 +150,50 @@ export const RightPage = ({ rightOpen }: RightPageProps) => {
       </div>
       <div className={classes.infoContainer}>
         <Box sx={infoBoxStyle}>
-          <span className={classes.boxTitle}>LiftLedger</span>
-          <img src={LiftLedger} className={classes.infoImage} />
-          <span>A paragraph about LiftLedger will go in this container</span>
+          <div className={classes.notLink}>
+            <span className={classes.boxTitle}>LiftLedger</span>
+            <img src={LiftLedger} className={classes.infoImage} />
+            <span className={classes.infoText}>
+              {`I used to track my workouts using Google Sheets. Needless to say,
+            this didn't quite cut it for me. Inspired by my need for something more,
+            I decided to make a workout tracker myself. LiftLedger is designed
+            primarily to be used as a PWA but also works in desktop form.`}
+            </span>
+          </div>
+          <a className={classes.link}>
+            <span>View Github Repo</span>
+          </a>
         </Box>
         <Box sx={infoBoxStyle}>
-          <span className={classes.boxTitle}>ByteBuddies</span>
-          <img src={ByteBuddies} className={classes.infoImage} />
-          <span>A paragraph about ByteBuddies will go in this container</span>
+          <div className={classes.notLink}>
+            <span className={classes.boxTitle}>ByteBuddies</span>
+            <img src={ByteBuddies} className={classes.infoImage} />
+            <span className={classes.infoText}>
+              ByteBuddies was the culmination of a group project for my Software
+              Development class. We worked in an agile-style team to create a
+              web application using a traditional MERN stack, along with
+              Socket.IO. I focused on UI, state management with Redux, and live
+              head-to-head games.
+            </span>
+          </div>
+          <a className={classes.link}>
+            <span>View Github Repo</span>
+          </a>
         </Box>
         <Box sx={infoBoxStyle}>
-          <span className={classes.boxTitle}>Twitter & Stocks</span>
-          <img src={Stocks} className={classes.infoImage} />
-          <span>A paragraph about stocks will go in this container</span>
+          <div className={classes.notLink}>
+            <span className={classes.boxTitle}>Twitter & Stocks</span>
+            <img src={Stocks} className={classes.infoImage} />
+            <span className={classes.infoText}>
+              {`In a data science class that I took, my group and I used pandas,
+            the Twitter and Polygon API's, and with machine learning models such
+            as Linear Regression and Random Forest to determine if CEO's Twitter
+            activity impacted their businesses. The verdict? Maybe.`}
+            </span>
+          </div>
+          <a className={classes.link}>
+            <span>View Github Repo</span>
+          </a>
         </Box>
       </div>
     </div>

@@ -81,7 +81,11 @@ const useStyles = makeStyles()({
     border: "solid",
     borderWidth: "5px",
     background: "white",
-    marginBottom: "15px",
+    marginBottom: "25px",
+  },
+  infoText: {
+    fontSize: "18px",
+    margin: "0px 10px 0px 10px",
   },
 });
 
@@ -103,6 +107,7 @@ const infoBoxStyle = {
   "&:hover": {
     animation: `${hoverIn} 0.2s forwards`,
   },
+  overflow: "scroll",
 };
 
 interface LeftPageProps {
@@ -127,17 +132,33 @@ export const LeftPage = ({ leftOpen }: LeftPageProps) => {
         <Box sx={infoBoxStyle}>
           <span className={classes.boxTitle}>Who am I?</span>
           <img src={Me} className={classes.infoImage} />
-          <span>A paragraph about me will go in this container</span>
+          <span className={classes.infoText}>
+            My name is Ben Aronow. I grew up in Minneapolis, but currently live
+            in Boston for school. I love software development, and am excited to
+            officially begin my career as an engineer. Most of my current
+            experience lies in web development, but I look forward to broadening
+            my knowledge with every coming year.
+          </span>
         </Box>
         <Box sx={infoBoxStyle}>
           <span className={classes.boxTitle}>Education</span>
           <img src={NEU} className={classes.infoImage} />
-          <span>A paragraph about Northeastern will go in this container</span>
+          <span className={classes.infoText}>
+            I am a senior at Northeastern University getting my BS in Computer
+            Science, with a concentration in software. During my time here I
+            have had the opportunity to participate in the cooperative education
+            program, and I am on my second co-op now. I also work for University
+            Recreation as a personal trainer.
+          </span>
         </Box>
         <Box sx={infoBoxStyle}>
           <span className={classes.boxTitle}>Current Role</span>
           <img src={eMoney} className={classes.infoImage} />
-          <span>A paragraph about eMoney will go in this container</span>
+          <span className={classes.infoText}>
+            I am currently working as a Software Engineer Co-op at eMoney
+            Advisor, where I am helping to create an online portal for clients
+            to utilize.
+          </span>
         </Box>
       </div>
     </div>
