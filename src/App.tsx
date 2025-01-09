@@ -89,11 +89,13 @@ export const App = () => {
       setLeftIn(moveTab(e, "left"));
       setRightIn(moveTab(e, "right"));
       const inGithub = moveLogo(e, "github");
-      inGithub ? setGithubIn(inGithub) : githubIn && setGithubIn(inGithub);
+      if (inGithub) {
+        setGithubIn(inGithub);
+      } else if (githubIn) setGithubIn(inGithub);
       const inLinkedin = moveLogo(e, "linkedin");
-      inLinkedin
-        ? setLinkedinIn(inLinkedin)
-        : linkedinIn && setLinkedinIn(inLinkedin);
+      if (inLinkedin) {
+        setLinkedinIn(inLinkedin);
+      } else if (linkedinIn) setLinkedinIn(inLinkedin);
     } else {
       setInLeftOverlay(isInOverlay(e) === "left");
       setInRightOverlay(isInOverlay(e) === "right");

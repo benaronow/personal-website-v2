@@ -78,7 +78,7 @@ export const Github = ({ githubIn }: GithubProps) => {
   const { classes } = useStyles();
 
   return (
-    <a href="https://github.com/benaronow" target="_blank">
+    <a href="https://github.com/benaronow" target="_blank" rel="noreferrer">
       <img
         id="github"
         className={`${classes.github} ${

@@ -18,8 +18,8 @@ export const Letters = () => {
 
   return (
     <>
-      {chars.map((char) => (
-        <div id={char.char}>
+      {chars.map((char, idx) => (
+        <div key={idx} id={char.char}>
           <span className={classes.title}>{char.char}</span>
         </div>
       ))}

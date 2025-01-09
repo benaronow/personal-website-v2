@@ -37,6 +37,19 @@ const useStyles = makeStyles()({
   rightPageOut: {
     animation: `${rightPageOut} 1s forwards`,
   },
+  header: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "15dvh",
+    background: "linear-gradient(90deg, white, #CF9FFF, white)",
+  },
+  title: {
+    fontSize: "65px",
+    fontFamily: "Barlow Semi Condensed",
+    fontWeight: 800,
+  },
 });
 
 interface RightPageProps {
@@ -52,6 +65,10 @@ export const RightPage = ({ rightOpen }: RightPageProps) => {
           ? classes.rightPageIn
           : rightOpen === false && classes.rightPageOut
       }`}
-    ></div>
+    >
+      <div className={classes.header}>
+        <span className={classes.title}>My Work</span>
+      </div>
+    </div>
   );
 };

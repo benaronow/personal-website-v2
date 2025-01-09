@@ -16,7 +16,6 @@
     "@types/react-dom": "^18.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-helmet": "^6.1.0",
     "react-scripts": "5.0.1",
     "tss-react": "^4.9.14",
     "typescript": "^5.7.2",
@@ -26,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix"
   },
   "browserslist": {
     "production": [

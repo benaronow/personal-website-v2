@@ -25,6 +25,9 @@ const useStyles = makeStyles()({
     top: 0,
     left: 0,
     zIndex: 5,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     height: "100dvh",
     width: "85dvw",
     transform: "translateX(-110%)",
@@ -36,6 +39,19 @@ const useStyles = makeStyles()({
   },
   leftPageOut: {
     animation: `${leftPageOut} 1s forwards`,
+  },
+  header: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "15dvh",
+    background: "linear-gradient(90deg, white, #CF9FFF, white)",
+  },
+  title: {
+    fontSize: "65px",
+    fontFamily: "Barlow Semi Condensed",
+    fontWeight: 800,
   },
 });
 
@@ -52,6 +68,10 @@ export const LeftPage = ({ leftOpen }: LeftPageProps) => {
           ? classes.leftPageIn
           : leftOpen === false && classes.leftPageOut
       }`}
-    ></div>
+    >
+      <div className={classes.header}>
+        <span className={classes.title}>About Me</span>
+      </div>
+    </div>
   );
 };

@@ -78,11 +78,17 @@ export const Linkedin = ({ linkedinIn }: LinkedinProps) => {
   const { classes } = useStyles();
 
   return (
-    <a href="https://www.linkedin.com/in/benaronow/" target="_blank">
+    <a
+      href="https://www.linkedin.com/in/benaronow/"
+      target="_blank"
+      rel="noreferrer"
+    >
       <img
         id="linkedin"
         className={`${classes.linkedin} ${
-          linkedinIn ? classes.linkedinIn : linkedinIn === false && classes.linkedinOut
+          linkedinIn
+            ? classes.linkedinIn
+            : linkedinIn === false && classes.linkedinOut
         }`}
         src={LinkedinImg}
       />
