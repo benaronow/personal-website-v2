@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Theme } from "@mui/material";
 import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
 import LiftLedger from "../../assets/liftledger.png";
@@ -25,7 +25,7 @@ const hoverOut = keyframes({
   "100%": { borderWidth: "5px" },
 });
 
-const useStyles = makeStyles()({
+const useStyles = makeStyles()((theme) => ({
   rightPage: {
     position: "absolute",
     top: 0,
@@ -53,6 +53,9 @@ const useStyles = makeStyles()({
     width: "100%",
     height: "15dvh",
     background: "linear-gradient(90deg, transparent, #CF9FFF, #CF9FFF)",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "15px",
+    },
   },
   title: {
     fontSize: "65px",
@@ -66,34 +69,46 @@ const useStyles = makeStyles()({
     alignItems: "center",
     width: "80dvw",
     height: "85dvh",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      overflow: "scroll",
+      justifyContent: "flex-start",
+    },
   },
   boxTitle: {
     fontFamily: "Barlow Semi Condensed",
     fontWeight: 600,
-    fontSize: "35px",
+    fontSize: "2.5dvw",
     color: "white",
     marginBottom: "10px",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "30px",
+    },
   },
   infoImage: {
-    width: "50%",
-    aspectRatio: 1,
+    width: "45%",
     borderRadius: "100%",
     border: "solid",
     borderWidth: "5px",
     background: "white",
-    marginBottom: "25px",
+    marginBottom: "30px",
+    [theme.breakpoints.down("md")]: {
+      width: "40%",
+    },
   },
   infoText: {
     fontSize: "18px",
     margin: "0px 10px 0px 10px",
+    overflow: "scroll",
   },
   notLink: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    overflow: "scroll",
+    height: "88%",
   },
   link: {
+    height: "12%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -101,22 +116,21 @@ const useStyles = makeStyles()({
     fontSize: "20px",
     fontWeight: 900,
     width: "calc(100% + 30px)",
-    height: "7dvh",
     background: "#CF9FFF",
     borderRadius: "0px 0px 20px 20px",
     justifySelf: "flex-end",
     transform: "translateY(15px)",
   },
-});
+}));
 
 interface RightPageProps {
   rightOpen: boolean | undefined;
 }
 
-const infoBoxStyle = {
+const infoBoxStyle = (theme: Theme) => ({
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
   textAlign: "left",
   height: "70dvh",
@@ -132,7 +146,12 @@ const infoBoxStyle = {
   "&:hover": {
     animation: `${hoverIn} 0.2s forwards`,
   },
-};
+  [theme.breakpoints.down("md")]: {
+    width: "60dvw",
+    minHeight: "60dvh",
+    marginBottom: "15px",
+  },
+});
 
 export const RightPage = ({ rightOpen }: RightPageProps) => {
   const { classes } = useStyles();
@@ -154,10 +173,10 @@ export const RightPage = ({ rightOpen }: RightPageProps) => {
             <span className={classes.boxTitle}>LiftLedger</span>
             <img src={LiftLedger} className={classes.infoImage} />
             <span className={classes.infoText}>
-              {`I used to track my workouts using Google Sheets. Needless to say,
+              {`I used to track my workouts with Google Sheets. Needless to say,
             this didn't quite cut it for me. Inspired by my need for something more,
-            I decided to make a workout tracker myself. LiftLedger is designed
-            primarily to be used as a PWA but also works in desktop form.`}
+            I decided to make a workout tracker myself. Built with NextJS, LiftLedger
+            is primarily designed as a PWA, but also works on desktop.`}
             </span>
           </div>
           <a
@@ -196,7 +215,7 @@ export const RightPage = ({ rightOpen }: RightPageProps) => {
             <img src={Stocks} className={classes.infoImage} />
             <span className={classes.infoText}>
               {`In a data science class that I took, my group and I used pandas,
-            the Twitter and Polygon API's, and with machine learning models such
+            the Twitter and Polygon APIs, and with machine learning models such
             as Linear Regression and Random Forest to determine if CEO's Twitter
             activity impacted their businesses. The verdict? Maybe.`}
             </span>

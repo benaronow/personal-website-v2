@@ -4,36 +4,34 @@ import { makeStyles } from "tss-react/mui";
 
 const leftArrowIn = keyframes({
   "0%": {
-    transform:
-      "rotate(180deg) translate(calc(-7.5dvw - 100%), calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(calc(-7.5dvw - 100%), calc(50dvh - 50%))",
   },
   "100%": {
-    transform: "rotate(180deg) translate(-50%, calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(-50%, calc(50dvh - 50%))",
   },
 });
 
 const leftArrowOut = keyframes({
   "0%": {
-    transform: "rotate(180deg) translate(-50%, calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(-50%, calc(50dvh - 50%))",
   },
   "100%": {
-    transform:
-      "rotate(180deg) translate(calc(-7.5dvw - 100%), calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(calc(-7.5dvw - 100%), calc(50dvh - 50%))",
   },
 });
 
 const inLeftOverlay = keyframes({
   "0%": {
     color: "white",
-    transform: "rotate(180deg) translate(-50%, calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(-50%, calc(50dvh - 50%))",
   },
   "50%": {
     color: "#CF9FFF",
-    transform: "rotate(180deg) translate(-50%, calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(-50%, calc(50dvh - 50%))",
   },
   "100%": {
     color: "white",
-    transform: "rotate(180deg) translate(-50%, calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(-50%, calc(50dvh - 50%))",
   },
 });
 
@@ -43,10 +41,9 @@ const useStyles = makeStyles()({
     top: 0,
     right: "7.5dvw",
     color: "white",
-    fontSize: "120px",
+    fontSize: "10vw",
     zIndex: 5,
-    transform:
-      "rotate(180deg) translate(calc(-7.5dvw - 100%), calc(-50dvh + 50%))",
+    transform: "scaleX(-1) translate(calc(-7.5dvw - 100%), calc(50dvh - 50%))",
     "&:hover": {
       cursor: "pointer",
     },

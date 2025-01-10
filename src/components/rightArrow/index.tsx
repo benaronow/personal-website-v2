@@ -41,7 +41,7 @@ const useStyles = makeStyles()({
     top: 0,
     left: "7.5dvw",
     color: "white",
-    fontSize: "120px",
+    fontSize: "10vw",
     zIndex: 5,
     transform: "translate(calc(-7.5dvw - 100%), calc(50dvh - 50%))",
     "&:hover": {

@@ -17,6 +17,7 @@ import { Overlay } from "./components/overlay";
 import { Letters } from "./components/letters";
 import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
+import { useTheme } from "@mui/material";
 
 const gradient = keyframes({
   "0%": {
@@ -51,18 +52,21 @@ export const App = () => {
   const [linkedinIn, setLinkedinIn] = useState<boolean | undefined>(undefined);
   const [inLeftOverlay, setInLeftOverlay] = useState(false);
   const [inRightOverlay, setInRightOverlay] = useState(false);
+  const theme = useTheme();
+  const [width, setWidth] = useState(window.innerWidth);
+  window.addEventListener("resize", () => setWidth(window.innerWidth));
 
   useEffect(() => {
     for (const i of Array.from(Array(10).keys())) resetLetter(i);
-    resetTab("left");
-    resetTab("right");
-  }, []);
+    resetTab("left", theme);
+    resetTab("right", theme);
+  }, [width]);
 
   const handleLeftClick = () => {
     setLeftOpen(true);
     setTimeout(() => {
       setLeftIn(false);
-      resetTab("left");
+      resetTab("left", theme);
     }, 500);
   };
 
@@ -70,7 +74,7 @@ export const App = () => {
     setRightOpen(true);
     setTimeout(() => {
       setRightIn(false);
-      resetTab("right");
+      resetTab("right", theme);
     }, 500);
   };
 
@@ -86,10 +90,10 @@ export const App = () => {
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (!leftOpen && !rightOpen) {
+    if (!leftOpen && !rightOpen && width > theme.breakpoints.values["md"]) {
       for (const i of Array.from(Array(10).keys())) moveLetter(e, i);
-      setLeftIn(moveTab(e, "left"));
-      setRightIn(moveTab(e, "right"));
+      setLeftIn(moveTab(e, "left", theme));
+      setRightIn(moveTab(e, "right", theme));
       const inGithub = moveLogo(e, "github");
       if (inGithub) {
         setGithubIn(inGithub);
@@ -106,7 +110,7 @@ export const App = () => {
 
   return (
     <div className={classes.container} onMouseMove={handleMouseMove}>
-      <LeftTab leftIn={leftIn} handleLeftClick={handleLeftClick} />
+      <LeftTab handleLeftClick={handleLeftClick} />
       <LeftName leftIn={leftIn} handleLeftClick={handleLeftClick} />
       <LeftPage leftOpen={leftOpen} />
       <LeftArrow
@@ -114,7 +118,7 @@ export const App = () => {
         inLeftOverlay={inLeftOverlay}
         handleOverlayClick={handleOverlayClick}
       />
-      <RightTab rightIn={rightIn} handleRightClick={handleRightClick} />
+      <RightTab handleRightClick={handleRightClick} />
       <RightName rightIn={rightIn} handleRightClick={handleRightClick} />
       <RightPage rightOpen={rightOpen} />
       <RightArrow
@@ -122,7 +126,7 @@ export const App = () => {
         inRightOverlay={inRightOverlay}
         handleOverlayClick={handleOverlayClick}
       />
-      <Letters />
+      <Letters width={width}/>
       <Github githubIn={githubIn} />
       <Linkedin linkedinIn={linkedinIn} />
       <Overlay

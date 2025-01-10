@@ -1,8 +1,9 @@
 import { makeStyles } from "tss-react/mui";
 import { chars } from "../../utils/letterUtils";
+import { useTheme } from "@mui/material";
 
 const useStyles = makeStyles()({
-  title: {
+  movingTitle: {
     position: "absolute",
     fontFamily: "Barlow Semi Condensed",
     fontSize: "100px",
@@ -11,18 +12,42 @@ const useStyles = makeStyles()({
     transform: "translate(-50%, -50%)",
     color: "white",
   },
+  stationaryTitle: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    color: "white",
+    fontSize: "12dvw",
+    fontFamily: "Barlow Semi Condensed",
+    fontWeight: 900,
+    textShadow: "0px 10px 7px black",
+    width: "100%",
+    textAlign: "center",
+  },
 });
 
-export const Letters = () => {
+interface LettersProps {
+  width: number;
+}
+
+export const Letters = ({ width }: LettersProps) => {
   const { classes } = useStyles();
+  const theme = useTheme();
 
   return (
     <>
-      {chars.map((char, idx) => (
-        <div key={idx} id={char.char}>
-          <span className={classes.title}>{char.char}</span>
-        </div>
-      ))}
+      {width > theme.breakpoints.values["md"] ? (
+        <>
+          {chars.map((char, idx) => (
+            <div key={idx} id={char.char}>
+              <span className={classes.movingTitle}>{char.char}</span>
+            </div>
+          ))}
+        </>
+      ) : (
+        <span className={classes.stationaryTitle}>{`Hi, I'm Ben!`}</span>
+      )}
     </>
   );
 };

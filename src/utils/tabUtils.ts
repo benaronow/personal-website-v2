@@ -1,23 +1,30 @@
+import { Theme } from "@mui/material";
 import { MouseEvent } from "react";
 
-export const resetTab = (id: string) => {
+export const resetTab = (id: string, theme: Theme) => {
   const tab = document.getElementById(`${id}Tab`);
   const tabName = document.getElementById(`${id}Name`);
+  const width = window.innerWidth;
   if (tab && tabName) {
     tab.style.width = 150 + "px";
     tab.style.height = 150 + "px";
     tab.style.borderRadius = 75 + "px";
-    tab.style.transform = `translate(${
-      id === "left" ? "-" : ""
-    }75px, -75px)`;
+    tab.style.transform = `translate(${id === "left" ? "-" : ""}75px, -75px)`;
+    tabName.style.width = 53 + "px";
     tabName.style.height = 53 + "px";
     tabName.style.fontSize = 17 + "px";
     tabName.style.fontSize = 17 + "px";
-    tabName.style.opacity = 0 + "%";
+    if (width > theme.breakpoints.values["md"]) {
+      tabName.style.opacity = 0 + "%";
+      tabName.style.animation = "";
+    } else {
+      tabName.style.opacity = 100 + "%";
+      tabName.style.animation = "none";
+    }
   }
 };
 
-export const moveTab = (event: MouseEvent, id: string) => {
+export const moveTab = (event: MouseEvent, id: string, theme: Theme) => {
   const mouseX = event.clientX;
   const mouseY = event.clientY;
   const tab = document.getElementById(`${id}Tab`);
@@ -53,7 +60,7 @@ export const moveTab = (event: MouseEvent, id: string) => {
       }px, -${parseInt(tab.style.height) / 2}px)`;
       return distance < 200;
     } else {
-      resetTab(id);
+      resetTab(id, theme);
       tabName.style.fontSize = 17 + "px";
       tabName.style.fontSize = 17 + "px";
       tabName.style.opacity = 0 + "%";

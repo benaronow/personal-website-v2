@@ -4,8 +4,8 @@ import { keyframes } from "tss-react";
 
 const linkedinIn = keyframes({
   "0%": {
-    height: "90px",
-    width: "90px",
+    height: "80px",
+    width: "80px",
     transform: "rotate(0deg)",
   },
   "100%": {
@@ -40,9 +40,9 @@ const linkedinOut = keyframes({
   "100%": {
     bottom: 10,
     right: 10,
-    height: "90px",
-    width: "90px",
-    borderRadius: "45px",
+    height: "80px",
+    width: "80px",
+    borderRadius: "40px",
     transform: "rotate(360deg)",
   },
 });
@@ -53,10 +53,10 @@ const useStyles = makeStyles()({
     bottom: 10,
     right: 10,
     zIndex: 2,
-    height: "90px",
-    width: "90px",
+    height: "80px",
+    width: "80px",
     boxShadow: "0px 10px 30px black",
-    borderRadius: "45px",
+    borderRadius: "40px",
     background: "transparent",
     "&:hover": {
       cursor: "pointer",

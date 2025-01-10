@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Theme } from "@mui/material";
 import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
 import Me from "../../assets/me.png";
@@ -25,7 +25,7 @@ const hoverOut = keyframes({
   "100%": { borderWidth: "5px" },
 });
 
-const useStyles = makeStyles()({
+const useStyles = makeStyles()((theme) => ({
   leftPage: {
     position: "absolute",
     top: 0,
@@ -53,6 +53,9 @@ const useStyles = makeStyles()({
     width: "100%",
     height: "15dvh",
     background: "linear-gradient(90deg, #CF9FFF, #CF9FFF, transparent)",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "15px",
+    },
   },
   title: {
     fontSize: "65px",
@@ -66,30 +69,47 @@ const useStyles = makeStyles()({
     alignItems: "center",
     width: "80dvw",
     height: "85dvh",
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "flex-start",
+      flexDirection: "column",
+      overflow: "scroll",
+    },
   },
   boxTitle: {
     fontFamily: "Barlow Semi Condensed",
     fontWeight: 600,
-    fontSize: "35px",
+    fontSize: "2.5dvw",
     color: "white",
     marginBottom: "10px",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "30px",
+    },
   },
   infoImage: {
-    width: "50%",
-    aspectRatio: 1,
+    width: "45%",
     borderRadius: "100%",
     border: "solid",
     borderWidth: "5px",
     background: "white",
-    marginBottom: "25px",
+    marginBottom: "30px",
+    [theme.breakpoints.down("md")]: {
+      width: "40%",
+    },
   },
   infoText: {
     fontSize: "18px",
     margin: "0px 10px 0px 10px",
+    overflow: "scroll",
   },
-});
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "100%",
+  },
+}));
 
-const infoBoxStyle = {
+const infoBoxStyle = (theme: Theme) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -107,8 +127,12 @@ const infoBoxStyle = {
   "&:hover": {
     animation: `${hoverIn} 0.2s forwards`,
   },
-  overflow: "scroll",
-};
+  [theme.breakpoints.down("md")]: {
+    width: "60dvw",
+    minHeight: "60dvh",
+    marginBottom: "15px",
+  },
+});
 
 interface LeftPageProps {
   leftOpen: boolean | undefined;
@@ -130,35 +154,41 @@ export const LeftPage = ({ leftOpen }: LeftPageProps) => {
       </div>
       <div className={classes.infoContainer}>
         <Box sx={infoBoxStyle}>
-          <span className={classes.boxTitle}>Who am I?</span>
-          <img src={Me} className={classes.infoImage} />
-          <span className={classes.infoText}>
-            My name is Ben Aronow. I grew up in Minneapolis, but currently live
-            in Boston for school. I love software development, and am excited to
-            officially begin my career as an engineer. Most of my current
-            experience lies in web development, but I look forward to broadening
-            my knowledge with every coming year.
-          </span>
+          <div className={classes.content}>
+            <span className={classes.boxTitle}>Who am I?</span>
+            <img src={Me} className={classes.infoImage} />
+            <span className={classes.infoText}>
+              My name is Ben Aronow. I grew up in Minneapolis, but currently
+              live in Boston for school. I love software development, and am
+              excited to officially begin my career as an engineer. Most of my
+              current experience lies in web development, but I look forward to
+              broadening my knowledge with every coming year.
+            </span>
+          </div>
         </Box>
         <Box sx={infoBoxStyle}>
-          <span className={classes.boxTitle}>Education</span>
-          <img src={NEU} className={classes.infoImage} />
-          <span className={classes.infoText}>
-            I am a senior at Northeastern University getting my BS in Computer
-            Science, with a concentration in software. During my time here I
-            have had the opportunity to participate in the cooperative education
-            program, and I am on my second co-op now. I also work for University
-            Recreation as a personal trainer.
-          </span>
+          <div className={classes.content}>
+            <span className={classes.boxTitle}>Education</span>
+            <img src={NEU} className={classes.infoImage} />
+            <span className={classes.infoText}>
+              I am a senior at Northeastern University getting my BS in Computer
+              Science, with a concentration in software. During my time here I
+              have had the opportunity to participate in the cooperative
+              education program, and I am on my second co-op now. I also work
+              for University Recreation as a personal trainer.
+            </span>
+          </div>
         </Box>
         <Box sx={infoBoxStyle}>
-          <span className={classes.boxTitle}>Current Role</span>
-          <img src={eMoney} className={classes.infoImage} />
-          <span className={classes.infoText}>
-            I am currently working as a Software Engineer Co-op at eMoney
-            Advisor, where I am helping to create an online portal for clients
-            to utilize.
-          </span>
+          <div className={classes.content}>
+            <span className={classes.boxTitle}>Current Role</span>
+            <img src={eMoney} className={classes.infoImage} />
+            <span className={classes.infoText}>
+              I am currently working as a Software Engineer Co-op at eMoney
+              Advisor, where I am helping to create an online portal for clients
+              to utilize.
+            </span>
+          </div>
         </Box>
       </div>
     </div>

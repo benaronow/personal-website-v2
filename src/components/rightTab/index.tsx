@@ -1,17 +1,4 @@
-// import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
-
-// const rightIn = keyframes({
-//   "0%": {
-//     background: "white",
-//   },
-//   "50%": {
-//     background: "#CF9FFF",
-//   },
-//   "100%": {
-//     background: "white",
-//   },
-// });
 
 const useStyles = makeStyles()({
   rightTab: {
@@ -25,23 +12,19 @@ const useStyles = makeStyles()({
       cursor: "pointer",
     },
   },
-  rightIn: {
-    // animation: `${rightIn} 2s infinite ease-out`,
-  },
 });
 
 interface RightTabProps {
-  rightIn: boolean;
   handleRightClick: () => void;
 }
 
-export const RightTab = ({ rightIn, handleRightClick }: RightTabProps) => {
+export const RightTab = ({ handleRightClick }: RightTabProps) => {
   const { classes } = useStyles();
 
   return (
     <div
       id="rightTab"
-      className={`${classes.rightTab} ${rightIn && classes.rightIn}`}
+      className={classes.rightTab}
       onClick={handleRightClick}
     ></div>
   );

@@ -1,17 +1,4 @@
-// import { keyframes } from "tss-react";
 import { makeStyles } from "tss-react/mui";
-
-// const leftIn = keyframes({
-//   "0%": {
-//     background: "white",
-//   },
-//   "50%": {
-//     background: "#CF9FFF",
-//   },
-//   "100%": {
-//     background: "white",
-//   },
-// });
 
 const useStyles = makeStyles()({
   leftTab: {
@@ -25,23 +12,19 @@ const useStyles = makeStyles()({
       cursor: "pointer",
     },
   },
-  leftIn: {
-    // animation: `${leftIn} 2s infinite ease-out`,
-  },
 });
 
 interface LeftTabProps {
-  leftIn: boolean;
   handleLeftClick: () => void;
 }
 
-export const LeftTab = ({ leftIn, handleLeftClick }: LeftTabProps) => {
+export const LeftTab = ({ handleLeftClick }: LeftTabProps) => {
   const { classes } = useStyles();
 
   return (
     <div
       id="leftTab"
-      className={`${classes.leftTab} ${leftIn && classes.leftIn}`}
+      className={classes.leftTab}
       onClick={handleLeftClick}
     ></div>
   );
